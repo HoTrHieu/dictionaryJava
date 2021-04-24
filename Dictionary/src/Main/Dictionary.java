@@ -16,7 +16,14 @@ public class Dictionary {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        System.out.print("ok");
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                SearchForm sForm = new SearchForm();
+                sForm.setVisible(true);
+                //f.LoadData();
+            }
+        });
+       
     }
     
 }
