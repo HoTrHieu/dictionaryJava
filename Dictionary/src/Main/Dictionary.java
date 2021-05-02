@@ -5,6 +5,16 @@
  */
 package Main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeMap;
+
 /**
  *
  * @author HO TRUNG HIEU
@@ -14,16 +24,40 @@ public class Dictionary {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                SearchForm sForm = new SearchForm();
-                sForm.setVisible(true);
-                //f.LoadData();
+    public void saveHistory(TreeMap<String, String> mapDictionary, String fileName){
+        try{
+            FileWriter file = new FileWriter(fileName, true);
+            
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
+            LocalDateTime now = LocalDateTime.now();  
+            System.out.println(dtf.format(now));  
+   
+            Set<String> keySet = mapDictionary.keySet();
+            for(String key: keySet) {
+                String tempValue = mapDictionary.get(key);
+                String writeValue ="\n" + key + "`" + tempValue + "`" + dtf.format(now);
+                file.write(writeValue);
             }
-        });
-       
+            file.close();   
+        }catch(IOException e){
+            System.out.println("An error occurred.") ;
+            e.printStackTrace();
+        }
+    }
+    
+    public void readHistory(String fileName) {
+        try{
+            File file = new File(fileName);
+            Scanner reader = new Scanner(file);
+            while (reader.hasNextLine()) {
+              String data = reader.nextLine();
+              System.out.println(data);
+            }
+            reader.close();
+        }catch(FileNotFoundException e){
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
     
 }
