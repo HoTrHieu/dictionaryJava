@@ -295,17 +295,13 @@ public class MainForm extends javax.swing.JFrame {
               String line = myReader.nextLine();
               String[] arrItem = line.split("`");           
               if(arrItem.length == 2){
-                if(this.slangsManage.treeSlang.containsKey(arrItem[0])){
-                    System.out.println(arrItem[0]);     
-                }
                 this.slangsManage.addSlangItem(arrItem[0], arrItem[1]);
               }
               if(arrItem.length == 1){
                   this.slangsManage.addSlangItem("null" + count , arrItem[0]);
                   count++;
               }
-            }
-             System.out.print("ok vo" + this.slangsManage.treeSlang.size()); 
+            } 
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
