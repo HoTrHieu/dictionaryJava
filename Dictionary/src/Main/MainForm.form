@@ -85,13 +85,13 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jButton10" alignment="0" max="32767" attributes="0"/>
-                              <Component id="resetSlang" alignment="0" pref="270" max="32767" attributes="0"/>
+                              <Component id="btnGameSlang" alignment="0" pref="270" max="32767" attributes="0"/>
+                              <Component id="resetSlang" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton9" max="32767" attributes="0"/>
-                              <Component id="jButton11" max="32767" attributes="0"/>
+                              <Component id="btnRandom" max="32767" attributes="0"/>
+                              <Component id="btnGameDefignition" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -117,12 +117,12 @@
                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="resetSlang" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRandom" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGameSlang" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnGameDefignition" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="27" max="32767" attributes="0"/>
               </Group>
@@ -186,20 +186,29 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetSlangActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton9">
+        <Component class="javax.swing.JButton" name="btnRandom">
           <Properties>
             <Property name="text" type="java.lang.String" value="Random Slang"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRandomActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton10">
+        <Component class="javax.swing.JButton" name="btnGameSlang">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x1ed1; Vui 1"/>
+            <Property name="text" type="java.lang.String" value="Game Funny Slang"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGameSlangActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton11">
+        <Component class="javax.swing.JButton" name="btnGameDefignition">
           <Properties>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x1ed1; Vui 2"/>
+            <Property name="text" type="java.lang.String" value="Game Funny Defignition"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGameDefignitionActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

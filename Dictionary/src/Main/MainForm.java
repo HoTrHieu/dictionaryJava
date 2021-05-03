@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -53,9 +55,9 @@ public class MainForm extends javax.swing.JFrame {
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         resetSlang = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        btnRandom = new javax.swing.JButton();
+        btnGameSlang = new javax.swing.JButton();
+        btnGameDefignition = new javax.swing.JButton();
 
         jMenu6.setText("jMenu6");
 
@@ -112,11 +114,26 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        jButton9.setText("Random Slang");
+        btnRandom.setText("Random Slang");
+        btnRandom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRandomActionPerformed(evt);
+            }
+        });
 
-        jButton10.setText("Đố Vui 1");
+        btnGameSlang.setText("Game Funny Slang");
+        btnGameSlang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGameSlangActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("Đố Vui 2");
+        btnGameDefignition.setText("Game Funny Defignition");
+        btnGameDefignition.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGameDefignitionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -141,12 +158,12 @@ public class MainForm extends javax.swing.JFrame {
                             .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButton10, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(resetSlang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))
+                            .addComponent(btnGameSlang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
+                            .addComponent(resetSlang, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnRandom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGameDefignition, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -165,11 +182,11 @@ public class MainForm extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resetSlang)
-                    .addComponent(jButton9))
+                    .addComponent(btnRandom))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11))
+                    .addComponent(btnGameSlang)
+                    .addComponent(btnGameDefignition))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -244,6 +261,29 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_resetSlangActionPerformed
 
+    private void btnRandomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRandomActionPerformed
+        // TODO add your handling code here:
+        
+        int randomNum = ThreadLocalRandom.current().nextInt(0,this.slangsManage.treeSlang.size());
+        String keyRandom = (String) this.slangsManage.treeSlang.keySet().toArray()[randomNum];
+        String valueRandom = this.slangsManage.treeSlang.get(keyRandom);
+        String result = "Slang random: " + keyRandom + ": " + valueRandom;
+        JOptionPane.showMessageDialog(this, result);
+        
+    }//GEN-LAST:event_btnRandomActionPerformed
+
+    private void btnGameSlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGameSlangActionPerformed
+        // TODO add your handling code here:
+        GameSlangForm gsf = new GameSlangForm(this, rootPaneCheckingEnabled);
+        gsf.setVisible(true);
+    }//GEN-LAST:event_btnGameSlangActionPerformed
+
+    private void btnGameDefignitionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGameDefignitionActionPerformed
+        // TODO add your handling code here:
+        GameDefignForm gdf = new GameDefignForm(this, rootPaneCheckingEnabled);
+        gdf.setVisible(true);
+    }//GEN-LAST:event_btnGameDefignitionActionPerformed
+
     public void loadData(){
         try {
             this.slangsManage = new SlangsManage();
@@ -314,12 +354,12 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnGameDefignition;
+    private javax.swing.JButton btnGameSlang;
+    private javax.swing.JButton btnRandom;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton9;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton resetSlang;
