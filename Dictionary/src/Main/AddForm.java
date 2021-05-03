@@ -115,11 +115,22 @@ public class AddForm extends javax.swing.JDialog {
         String key = txtSlang.getText();
         String value = txtDefign.getText();
         SlangsManage slangsManage = this.mainForm.getSlangsManage();
-        if(slangsManage.addSlangSave(key, value)){
-            JOptionPane.showMessageDialog(this, "Add success");
+        
+        if(slangsManage.treeSlang.containsKey(key)){
+            int resultChoose = JOptionPane.showConfirmDialog(this, "The slang exit. Do you want to override");
+            if(resultChoose == JOptionPane.YES_OPTION) {
+                slangsManage.treeSlang.put(key, value);
+                this.dictionary.saveCrrentSlang(slangsManage.treeSlang, "slang.txt");
+                JOptionPane.showMessageDialog(this, "Override success");
+            }
         }else {
-            JOptionPane.showMessageDialog(this, "add faild or has exit");
+            if(slangsManage.addSlangSave(key, value)){
+            JOptionPane.showMessageDialog(this, "Add success");
+            }else {
+                JOptionPane.showMessageDialog(this, "add faild or has exit");
+            }
         }
+        
             
         
         
