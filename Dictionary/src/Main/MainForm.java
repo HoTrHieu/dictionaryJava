@@ -7,7 +7,11 @@ package Main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -230,6 +234,14 @@ public class MainForm extends javax.swing.JFrame {
 
     private void resetSlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetSlangActionPerformed
         // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(this, "Are you sure to reset slang?");
+        if(result == JOptionPane.YES_OPTION) {
+            try {
+                this.slangsManage.resetSlang();
+            } catch (IOException ex) {
+                Logger.getLogger(MainForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_resetSlangActionPerformed
 
     public void loadData(){

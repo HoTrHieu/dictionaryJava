@@ -5,8 +5,12 @@
  */
 package Main;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
+import java.util.Set;
 import java.util.TreeMap;
 import javax.swing.JOptionPane;
 
@@ -60,6 +64,39 @@ public class SlangsManage {
             file.close();  
         }catch(IOException e){
             System.out.println("An error occurred.") ;
+            e.printStackTrace();
+        }
+    }
+    
+    public void resetSlang() throws IOException {
+        this.treeSlang.clear();
+        try {            
+            FileWriter fileSave = new FileWriter("slang.txt");
+           
+            File file = new File("backup.txt");
+            Scanner myReader = new Scanner(file);
+            int count = 0;
+            while (myReader.hasNextLine()) {
+              String line = myReader.nextLine();
+              String[] arrItem = line.split("`");   
+              
+              if(arrItem.length == 2){
+                if(this.treeSlang.containsKey(arrItem[0])){
+                    System.out.println(arrItem[0]);     
+                }
+                this.addSlangItem(arrItem[0], arrItem[1]);
+              }
+              if(arrItem.length == 1){
+                  this.addSlangItem("null" + count , arrItem[0]);
+                  count++;
+              }
+              
+              fileSave.write(line + "\n");
+            }
+            myReader.close();
+            fileSave.close();  
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
             e.printStackTrace();
         }
     }
