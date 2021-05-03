@@ -81,8 +81,18 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         jButton4.setText("Add Slang");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Edit Slang");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Delete Slang");
 
@@ -190,8 +200,19 @@ public class MainForm extends javax.swing.JFrame {
         sddf.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        AddForm addForm = new AddForm(this, rootPaneCheckingEnabled);
+        addForm.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        EditSlang editForm = new EditSlang(this, rootPaneCheckingEnabled);
+        editForm.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     public void loadData(){
-        //read file 
         try {
             this.slangsManage = new SlangsManage();
             
@@ -200,19 +221,19 @@ public class MainForm extends javax.swing.JFrame {
             int count = 0;
             while (myReader.hasNextLine()) {
               String line = myReader.nextLine();
-              String[] arrItem = line.split("`");
-              //System.out.println(arrItem[0]);
-              //System.out.println(line);
+              String[] arrItem = line.split("`");           
               if(arrItem.length == 2){
-                //System.out.println(arrItem.length);
-                //System.out.println(arrItem[1]);
+                if(this.slangsManage.treeSlang.containsKey(arrItem[0])){
+                    System.out.println(arrItem[0]);     
+                }
                 this.slangsManage.addSlangItem(arrItem[0], arrItem[1]);
               }
               if(arrItem.length == 1){
                   this.slangsManage.addSlangItem("null" + count , arrItem[0]);
+                  count++;
               }
-
             }
+             System.out.print("ok vo" + this.slangsManage.treeSlang.size()); 
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");

@@ -30,13 +30,31 @@ public class Dictionary {
             
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
             LocalDateTime now = LocalDateTime.now();  
-            System.out.println(dtf.format(now));  
-   
+            
             Set<String> keySet = mapDictionary.keySet();
             for(String key: keySet) {
                 String tempValue = mapDictionary.get(key);
                 String writeValue ="\n" + key + "`" + tempValue + "`" + dtf.format(now);
                 file.write(writeValue);
+            }
+            file.close();   
+        }catch(IOException e){
+            System.out.println("An error occurred.") ;
+            e.printStackTrace();
+        }
+    }
+    
+    public void saveCrrentSlang(TreeMap<String, String> treeSlang, String fileName) {
+         try{
+            int index = 0;
+            FileWriter file = new FileWriter(fileName);
+            
+            Set<String> keySet = treeSlang.keySet();
+            for(String key: keySet) {
+                String tempValue = treeSlang.get(key);
+                String writeValue = index == 0 ? (key + "`" + tempValue) : ("\n" + key + "`" + tempValue);
+                file.write(writeValue);
+                index++;
             }
             file.close();   
         }catch(IOException e){
