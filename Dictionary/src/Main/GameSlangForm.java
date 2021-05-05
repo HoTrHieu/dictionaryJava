@@ -235,6 +235,7 @@ public class GameSlangForm extends javax.swing.JDialog {
             if(answer == result) {
                 int confirmR = JOptionPane.showConfirmDialog(this, "Amazing good Job Em! Continue?");
                 if(confirmR == JOptionPane.YES_OPTION) {
+                    rdoGourp.clearSelection();
                     this.LoadGame();
                 } else {
                     this.dispose();

@@ -234,6 +234,7 @@ public class GameDefignForm extends javax.swing.JDialog {
             if(answer == result) {
                 int confirmR = JOptionPane.showConfirmDialog(this, "Amazing good Job Em! Continue?");
                 if(confirmR == JOptionPane.YES_OPTION) {
+                    rdoGroup.clearSelection();
                     this.LoadGame();
                 } else {
                     this.dispose();
